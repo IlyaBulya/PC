@@ -31,20 +31,44 @@
 
                 @if(!empty($colors))
                     <div class="mb-4">
-                        <p class="text-sm text-zinc-400 mb-1">Available colors:</p>
-                        <div class="flex gap-2">
-                            @foreach($colors as $color)
-                                <span class="px-3 py-1 rounded-full bg-zinc-800 text-xs">
-                                    {{ ucfirst($color) }}
-                                </span>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
+                        <p class="text-sm text-zinc-400 mb-1">Choose color:</p>
+                        <form method="POST" action="{{ route('cart.add', $product) }}" class="space-y-3">
+                            @csrf
 
-                <p class="text-sm text-zinc-500">
-                    (Здесь позже будет форма для добавления в корзину с выбором цвета и кастомного дизайна.)
-                </p>
+                            <select name="color"
+                                    class="bg-zinc-900 border border-zinc-700 rounded-lg px-3 py-2 text-sm w-full">
+                                @foreach($colors as $color)
+                                    <option value="{{ $color }}">{{ ucfirst($color) }}</option>
+                                @endforeach
+                            </select>
+
+                            <div>
+                                <label class="block text-sm text-zinc-400 mb-1">
+                                    Custom design (optional)
+                                </label>
+                                <input type="text"
+                                       name="design"
+                                       class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-3 py-2 text-sm"
+                                       placeholder="Engraving, special notes...">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm text-zinc-400 mb-1">Quantity</label>
+                                <input type="number" name="qty" value="1" min="1"
+                                       class="w-24 bg-zinc-900 border border-zinc-700 rounded-lg px-3 py-2 text-sm">
+                            </div>
+
+                            <button type="submit"
+                                    class="mt-2 inline-flex items-center px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-sm font-semibold rounded-lg">
+                                Add to cart
+                            </button>
+                        </form>
+                    </div>
+                @else
+                    <p class="text-sm text-zinc-500 mb-4">
+                        No color options configured for this product yet.
+                    </p>
+                @endif
             </div>
         </div>
     </div>
