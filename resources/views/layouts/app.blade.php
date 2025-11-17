@@ -15,23 +15,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.1/dist/cdn.min.js"></script>
 </head>
-<body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100">
-    @include('layouts.app_navigation')
+<body class="font-sans antialiased bg-zinc-950 text-zinc-100">
+<div class="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-950 to-black">
+	@include('layouts.app_navigation')
 
-    <!-- Page Heading -->
-    @isset($header)
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-    @endisset
-
-    <!-- Page Content -->
-    <main>
-        {{ $slot }}
-    </main>
+	<!-- Page Content -->
+	<main class="py-8">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			{{ $slot }}
+		</div>
+	</main>
 </div>
 </body>
 </html>
