@@ -50,6 +50,14 @@
                     (Следующим шагом сделаем Checkout и создание Order.)
                 </p>
             </div>
+
+            <form method="POST" action="{{ route('checkout.store') }}">
+                @csrf
+                <button type="submit"
+                        class="mt-3 inline-flex items-center px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-sm font-semibold rounded-lg">
+                    Checkout
+                </button>
+            </form>
         @endif
     </div>
 </x-app-layout>

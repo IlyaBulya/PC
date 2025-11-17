@@ -8,6 +8,8 @@ use App\Models\Product;
 
 class OrderItem extends Model
 {
+    protected $fillable = ['order_id', 'product_id', 'qty', 'price', 'color', 'design'];
+
     public function order()
     {
         return $this->belongsTo(Order::class);
