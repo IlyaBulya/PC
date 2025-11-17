@@ -3,7 +3,7 @@
         <div class="flex h-16 items-center justify-between">
             {{-- Логотип + название --}}
             <div class="flex items-center gap-3">
-                <a href="{{ route('products.index') }}" class="flex items-center gap-2">
+                <a href="{{ route('home') }}" class="flex items-center gap-2">
                     <div
                         class="h-8 w-8 rounded-xl bg-emerald-500 flex items-center justify-center text-xs font-black tracking-tight">
                         PC
