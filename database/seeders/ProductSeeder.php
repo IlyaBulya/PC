@@ -62,6 +62,30 @@ class ProductSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Keychron K6 Wireless',
+                'description' => 'Compact wireless mechanical keyboard with hot‑swappable switches.',
+                'price' => 89.00,
+                'stock' => 12,
+                'image' => 'keychron-k6.jpg',
+                'available_colors' => json_encode(['black', 'white']),
+                'type' => 'keyboard',
+                'category' => 'Keyboard',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'NVIDIA GeForce RTX 4070',
+                'description' => 'Powerful GPU for 1440p high‑refresh gaming and creator workflows.',
+                'price' => 599.00,
+                'stock' => 6,
+                'image' => 'rtx-4070.jpg',
+                'available_colors' => json_encode(['black']),
+                'type' => 'gpu',
+                'category' => 'GPU',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

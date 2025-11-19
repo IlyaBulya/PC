@@ -14,7 +14,8 @@
                     {{-- картинка категории --}}
                     @if($item['image'])
                         <img src="{{ $item['image'] }}"
-                             class="absolute inset-0 w-full h-full object-cover">
+                             class="absolute inset-0 w-full h-full object-cover"
+                             @if(($item['type'] ?? null) === 'keyboard') style="object-position:center calc(50% - 50px);" @endif>
                     @endif
 
                     {{-- затемнение сверху --}}
