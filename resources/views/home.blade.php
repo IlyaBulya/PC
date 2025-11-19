@@ -16,12 +16,12 @@
                 </p>
 
                 <div class="flex flex-wrap gap-3">
-                    <a href="{{ route('products.index') }}"
+                    <a href="{{ route('products.types') }}"
                        class="inline-flex items-center px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-sm font-semibold text-black shadow-[0_0_25px_rgba(16,185,129,0.5)] transition">
                         Configure your PC
                     </a>
 
-                    <a href="{{ route('products.index') }}"
+                    <a href="{{ route('products.types') }}"
                        class="inline-flex items-center px-6 py-3 rounded-full border border-zinc-700 hover:border-emerald-400 text-sm font-semibold text-zinc-200 hover:text-emerald-300 transition">
                         Browse all products
                     </a>
@@ -80,7 +80,7 @@
             <section>
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-xl font-semibold">Featured builds</h2>
-                    <a href="{{ route('products.index') }}" class="text-xs text-emerald-400 hover:text-emerald-300">
+                    <a href="{{ route('products.types') }}" class="text-xs text-emerald-400 hover:text-emerald-300">
                         View full catalog →
                     </a>
                 </div>

@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-4xl mx-auto py-8 text-white">
-        <a href="{{ route('products.index') }}" class="text-sm text-zinc-400 hover:text-emerald-400">
+        <a href="{{ route('products.types') }}" class="text-sm text-zinc-400 hover:text-emerald-400">
             &larr; Back to catalog
         </a>
 

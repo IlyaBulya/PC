@@ -17,7 +17,7 @@
 
             {{-- Основные ссылки --}}
             <div class="hidden md:flex items-center gap-6 text-sm">
-                <a href="{{ route('products.index') }}"
+                <a href="{{ route('products.types') }}"
                    class="text-zinc-300 hover:text-emerald-400 transition">
                     Catalog
                 </a>

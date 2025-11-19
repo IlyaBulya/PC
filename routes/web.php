@@ -9,6 +9,14 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// страница ТИПОВ (PC, Mouse, Keyboard, GPU...)
+Route::get('/products', [ProductController::class, 'types'])
+    ->name('products.types');
+
+// товары по типу (например, все PC)
+Route::get('/products/type/{type}', [ProductController::class, 'byType'])
+    ->name('products.byType');
+
 Route::get('/dashboard', function () {
     return view('userzone.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -19,8 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [App\Http\Controllers\Userzone\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/products', [ProductController::class, 'index'])
-    ->name('products.index');
+// удалено /products/all — используем /products (types) и /products/type/{type}
 
 Route::get('/products/{product}', [ProductController::class, 'show'])
     ->name('products.show');
