@@ -1,39 +1,39 @@
 <x-app-layout>
-    <div class="py-10 text-white">
-        <h1 class="text-3xl font-bold mb-6">Product categories</h1>
+    <div class="py-6 text-white">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {{-- GRID: 2 в ряд, почти без отступов --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
             @foreach($types as $item)
                 <a href="{{ route('products.byType', $item['type']) }}"
-                   class="relative rounded-[32px] overflow-hidden shadow-[0_0_40px_rgba(15,23,42,0.9)] hover:scale-[1.02] transition duration-300">
+                   class="relative aspect-square rounded-3xl overflow-hidden shadow-lg hover:scale-[1.02] transition duration-300">
 
                     {{-- яркий фон --}}
-                    <div class="absolute inset-0 bg-gradient-to-br {{ $item['gradient'] }}"></div>
-                    {{-- лёгкая дымка для читаемости текста --}}
-                    <div class="absolute inset-0 bg-black/35"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br {{ $item['gradient'] }} opacity-80"></div>
 
-                    <div class="relative px-8 py-10 flex flex-col justify-between h-full">
-                        <div>
-                            <p class="text-xs uppercase tracking-[0.3em] text-zinc-200/80 mb-3">
-                                Category
-                            </p>
-                            <h2 class="text-3xl font-extrabold tracking-wide mb-2">
-                                {{ strtoupper($item['label']) }}
-                            </h2>
-                            <p class="text-sm text-zinc-100/85">
-                                Click to see all {{ strtolower($item['label']) }}.
-                            </p>
-                        </div>
+                    {{-- картинка категории --}}
+                    @if($item['image'])
+                        <img src="{{ $item['image'] }}"
+                             class="absolute inset-0 w-full h-full object-cover">
+                    @endif
 
-                        <div class="mt-6">
-                            <span
-                                class="inline-flex items-center px-4 py-2 rounded-full bg-white text-xs font-semibold text-zinc-900 hover:bg-zinc-100 transition">
-                                View products →
-                            </span>
-                        </div>
+                    {{-- затемнение сверху --}}
+                    <div class="absolute inset-0 bg-black/10"></div>
+
+                    {{-- текст --}}
+                    <div class="relative flex flex-col justify-end h-full p-6">
+                        <h2 class="text-3xl font-extrabold tracking-wide">
+                            {{ strtoupper($item['label']) }}
+                        </h2>
+
+                        <span class="mt-2 text-sm opacity-80">
+                            Tap to view products →
+                        </span>
                     </div>
+
                 </a>
             @endforeach
+
         </div>
     </div>
 </x-app-layout>

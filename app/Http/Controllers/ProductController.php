@@ -13,13 +13,33 @@ class ProductController extends Controller
     {
         $rawTypes = Product::select('type')->distinct()->pluck('type');
 
-        // Настроим красивые названия + цвета
+        // Настроим красивые названия + цвета + изображения
         $meta = [
-            'pc'       => ['label' => 'PC',        'gradient' => 'from-cyan-400 via-cyan-500 to-sky-700'],
-            'mouse'    => ['label' => 'Mice',      'gradient' => 'from-fuchsia-500 via-purple-600 to-indigo-700'],
-            'keyboard' => ['label' => 'Keyboards', 'gradient' => 'from-amber-400 via-orange-500 to-rose-500'],
-            'gpu'      => ['label' => 'GPUs',      'gradient' => 'from-emerald-400 via-teal-500 to-cyan-600'],
-            'headset'  => ['label' => 'Headsets',  'gradient' => 'from-pink-500 via-rose-500 to-red-500'],
+            'pc' => [
+                'label'    => 'PC',
+                'image'    => '/images/categories/pc.png',
+                'gradient' => 'from-cyan-400 via-cyan-500 to-sky-700',
+            ],
+            'mouse' => [
+                'label'    => 'Mice',
+                'image'    => '/images/categories/mouse.png',
+                'gradient' => 'from-purple-500 via-fuchsia-500 to-indigo-700',
+            ],
+            'keyboard' => [
+                'label'    => 'Keyboards',
+                'image'    => '/images/categories/keyboard.png',
+                'gradient' => 'from-amber-400 via-orange-500 to-rose-500',
+            ],
+            'gpu' => [
+                'label'    => 'GPUs',
+                'image'    => '/images/categories/gpu.jpg',
+                'gradient' => 'from-emerald-400 via-teal-500 to-cyan-600',
+            ],
+            'headset' => [
+                'label'    => 'Headsets',
+                'image'    => '/images/categories/headset.jpg',
+                'gradient' => 'from-pink-500 via-rose-500 to-red-500',
+            ],
         ];
 
         $types = $rawTypes->map(function ($type) use ($meta) {
@@ -28,6 +48,7 @@ class ProductController extends Controller
             return [
                 'type'     => $type,
                 'label'    => $meta[$key]['label']    ?? Str::headline($type),
+                'image'    => $meta[$key]['image']    ?? null,
                 'gradient' => $meta[$key]['gradient'] ?? 'from-zinc-600 to-zinc-900',
             ];
         });
