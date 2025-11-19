@@ -32,12 +32,12 @@ class ProductController extends Controller
             ],
             'gpu' => [
                 'label'    => 'GPUs',
-                'image'    => '/images/categories/gpu.jpg',
+                'image'    => '/images/categories/gpu.png',
                 'gradient' => 'from-emerald-400 via-teal-500 to-cyan-600',
             ],
             'headset' => [
                 'label'    => 'Headsets',
-                'image'    => '/images/categories/headset.jpg',
+                'image'    => '/images/categories/headset.png',
                 'gradient' => 'from-pink-500 via-rose-500 to-red-500',
             ],
         ];
