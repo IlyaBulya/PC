@@ -15,15 +15,13 @@
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.1/dist/cdn.min.js"></script>
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-breeze.application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+    <body class="font-sans antialiased bg-zinc-950 text-zinc-100">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center py-10 bg-gradient-to-b from-zinc-950 via-zinc-950 to-black">
+            <a href="{{ route('home') }}" class="mb-6">
+                <x-breeze.application-logo class="w-16 h-16 fill-current text-emerald-400" />
+            </a>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-md mt-2 px-6 py-6 bg-zinc-900/80 border border-zinc-800 rounded-2xl shadow-[0_0_25px_rgba(15,23,42,0.6)]">
                 {{ $slot }}
             </div>
         </div>

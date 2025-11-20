@@ -27,14 +27,14 @@
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                <input id="remember_me" type="checkbox" class="rounded border-zinc-700 text-emerald-500 bg-zinc-900 shadow-sm focus:ring-emerald-500" name="remember">
+                <span class="ms-2 text-sm text-zinc-400">{{ __('Remember me') }}</span>
             </label>
         </div>
 
         <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                <a class="underline text-sm text-zinc-400 hover:text-emerald-400 rounded-md focus:outline-none" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
@@ -42,6 +42,11 @@
             <x-breeze.primary-button class="ms-3">
                 {{ __('Log in') }}
             </x-breeze.primary-button>
+
+            <a href="{{ route('register') }}"
+               class="ms-3 inline-flex items-center px-4 py-2 border border-zinc-700 rounded-lg text-sm font-semibold text-zinc-200 hover:border-emerald-500 hover:text-emerald-300 transition">
+                {{ __('Register') }}
+            </a>
         </div>
     </form>
 </x-guest-layout>
