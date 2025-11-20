@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminProductController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -46,5 +47,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/{order}', [OrderController::class, 'show'])
         ->name('orders.show');
 });
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::resource('products', AdminProductController::class)->except(['show']);
+    });
 
 require __DIR__.'/auth.php';

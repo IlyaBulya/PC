@@ -7,6 +7,17 @@ use App\Models\OrderItem;
 
 class Product extends Model
 {
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'stock',
+        'image',
+        'available_colors',
+        'type',
+        'category',
+    ];
+
     protected $casts = [
         'available_colors' => 'array',
     ];
