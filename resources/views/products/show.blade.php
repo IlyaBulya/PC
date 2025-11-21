@@ -42,15 +42,17 @@
                                 @endforeach
                             </select>
 
-                            <div>
-                                <label class="block text-sm text-zinc-400 mb-1">
-                                    Custom design (optional)
-                                </label>
-                                <input type="text"
-                                       name="design"
-                                       class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-3 py-2 text-sm"
-                                       placeholder="Engraving, special notes...">
-                            </div>
+                            @if($product->type === 'pc')
+                                <div>
+                                    <label class="block text-sm text-zinc-400 mb-1">
+                                        Custom design (optional)
+                                    </label>
+                                    <input type="text"
+                                           name="design"
+                                           class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-3 py-2 text-sm"
+                                           placeholder="Engraving, special notes...">
+                                </div>
+                            @endif
 
                             <div>
                                 <label class="block text-sm text-zinc-400 mb-1">Quantity</label>
