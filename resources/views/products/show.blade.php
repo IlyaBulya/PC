@@ -5,10 +5,22 @@
         </a>
 
         <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-zinc-900 rounded-xl h-64 flex items-center justify-center">
-                <span class="text-zinc-400 text-sm">
-                    {{ $product->image ?? 'Product image' }}
-                </span>
+            <div class="bg-zinc-900 rounded-xl h-64 flex items-center justify-center overflow-hidden border border-zinc-800">
+                @php
+                    $src = null;
+                    if (!empty($product->image)) {
+                        $src = \Illuminate\Support\Str::startsWith($product->image, ['http://','https://','/'])
+                            ? $product->image
+                            : \Illuminate\Support\Facades\Storage::url($product->image);
+                    }
+                @endphp
+                @if($src)
+                    <img src="{{ $src }}" alt="{{ $product->name }}" class="h-full w-full object-cover">
+                @else
+                    <span class="text-zinc-400 text-sm">
+                        Product image
+                    </span>
+                @endif
             </div>
 
             <div>

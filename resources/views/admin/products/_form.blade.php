@@ -34,12 +34,27 @@
             @error('stock')<div class="text-red-400 text-xs mt-1">{{ $message }}</div>@enderror
         </div>
         <div>
-            <label class="block text-sm text-zinc-400 mb-1">Image filename or URL</label>
-            <input type="text" name="image" value="{{ old('image', $product->image ?? '') }}"
+            <label class="block text-sm text-zinc-400 mb-1">Image (upload)</label>
+            <input type="file" name="image" accept="image/*"
                    class="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-3 py-2 text-sm">
             @error('image')<div class="text-red-400 text-xs mt-1">{{ $message }}</div>@enderror
         </div>
     </div>
+    @php use Illuminate\Support\Facades\Storage; use Illuminate\Support\Str; @endphp
+    @isset($product)
+        @if(!empty($product->image))
+            @php
+                $src = $product->image;
+                if (!Str::startsWith($src, ['http://','https://','/'])) {
+                    $src = Storage::url($src);
+                }
+            @endphp
+            <div class="mt-2">
+                <span class="block text-xs text-zinc-500 mb-1">Current image preview:</span>
+                <img src="{{ $src }}" alt="Current image" class="h-24 rounded border border-zinc-800">
+            </div>
+        @endif
+    @endisset
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>

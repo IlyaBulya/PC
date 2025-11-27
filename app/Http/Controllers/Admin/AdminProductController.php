@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminProductController extends Controller
 {
@@ -35,7 +36,7 @@ class AdminProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|max:4096',
             'available_colors' => 'nullable|string',
             'type' => 'required|string|max:50',
             'category' => 'required|string|max:100',
@@ -46,6 +47,10 @@ class AdminProductController extends Controller
             $colors = array_values(array_filter(array_map('trim', explode(',', $data['available_colors']))));
         }
         $data['available_colors'] = $colors;
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('products', 'public');
+        }
 
         Product::create($data);
 
@@ -79,7 +84,7 @@ class AdminProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|max:4096',
             'available_colors' => 'nullable|string',
             'type' => 'required|string|max:50',
             'category' => 'required|string|max:100',
@@ -90,6 +95,16 @@ class AdminProductController extends Controller
             $colors = array_values(array_filter(array_map('trim', explode(',', $data['available_colors']))));
         }
         $data['available_colors'] = $colors;
+
+        if ($request->hasFile('image')) {
+            // delete old if stored on public disk path-like
+            if ($product->image && !str_starts_with($product->image, 'http')) {
+                Storage::disk('public')->delete($product->image);
+            }
+            $data['image'] = $request->file('image')->store('products', 'public');
+        } else {
+            unset($data['image']); // don't overwrite with null
+        }
 
         $product->update($data);
 
