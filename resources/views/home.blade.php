@@ -42,7 +42,11 @@
             <div class="relative">
                 <div class="absolute -inset-4 bg-emerald-500/10 blur-3xl rounded-full pointer-events-none"></div>
 
+                @if(isset($hero) && $hero)
+                <a href="{{ route('products.show', $hero) }}" class="relative block bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-3xl p-6 shadow-[0_0_40px_rgba(15,23,42,0.8)] hover:border-emerald-500 hover:shadow-[0_0_25px_rgba(16,185,129,0.35)] transition">
+                @else
                 <div class="relative bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-3xl p-6 shadow-[0_0_40px_rgba(15,23,42,0.8)]">
+                @endif
                     <div class="text-xs uppercase tracking-[0.25em] text-zinc-500 mb-3">
                         Featured build
                     </div>
@@ -57,7 +61,7 @@
                     @endphp
                     <div class="aspect-[16/9] rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center mb-4 overflow-hidden">
                         @if($heroSrc)
-                            <img src="{{ $heroSrc }}" alt="{{ $hero->name }}" class="w-full h-full object-cover">
+                            <img src="{{ $heroSrc }}" alt="{{ $hero->name ?? 'Hero product' }}" class="w-full h-full object-cover">
                         @else
                             <span class="text-zinc-500 text-sm">
                                 PC interior preview
@@ -93,7 +97,11 @@
                             In stock
                         </span>
                     </div>
+                @if(isset($hero) && $hero)
+                </a>
+                @else
                 </div>
+                @endif
             </div>
         </section>
 

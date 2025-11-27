@@ -42,6 +42,10 @@
                         <span class="text-sm text-zinc-300">
                             {{ Auth::user()->name }}
                         </span>
+                        <a href="{{ route('profile.edit') }}"
+                           class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-900 border border-zinc-700 hover:border-emerald-500 hover:text-emerald-400 transition">
+                            Profile
+                        </a>
 
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
