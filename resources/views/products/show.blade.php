@@ -5,7 +5,7 @@
         </a>
 
         <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-zinc-900 rounded-xl h-64 flex items-center justify-center overflow-hidden border border-zinc-800">
+            <div class="bg-zinc-900 rounded-xl h-96 flex items-center justify-center overflow-hidden border border-zinc-800">
                 @php
                     $src = null;
                     if (!empty($product->image)) {

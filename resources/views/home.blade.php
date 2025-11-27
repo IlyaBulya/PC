@@ -47,20 +47,42 @@
                         Featured build
                     </div>
 
-                    <div class="aspect-[16/9] rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center mb-4">
-                        <span class="text-zinc-500 text-sm">
-                            PC interior preview
-                        </span>
+                    @php
+                        $heroSrc = null;
+                        if(isset($hero) && $hero && !empty($hero->image)) {
+                            $heroSrc = \Illuminate\Support\Str::startsWith($hero->image, ['http://','https://','/'])
+                                ? $hero->image
+                                : \Illuminate\Support\Facades\Storage::url($hero->image);
+                        }
+                    @endphp
+                    <div class="aspect-[16/9] rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center mb-4 overflow-hidden">
+                        @if($heroSrc)
+                            <img src="{{ $heroSrc }}" alt="{{ $hero->name }}" class="w-full h-full object-cover">
+                        @else
+                            <span class="text-zinc-500 text-sm">
+                                PC interior preview
+                            </span>
+                        @endif
                     </div>
 
                     <div class="flex items-center justify-between mb-2">
                         <div>
-                            <div class="text-sm font-semibold">4K Ultra Gaming</div>
-                            <div class="text-xs text-zinc-500">RTX 4090 • i9 • 64GB RAM</div>
+                            <div class="text-sm font-semibold">
+                                {{ $hero->name ?? '4K Ultra Gaming' }}
+                            </div>
+                            <div class="text-xs text-zinc-500">
+                                {{ $hero->category ?? 'RTX 4090 • i9 • 64GB RAM' }}
+                            </div>
                         </div>
                         <div class="text-right">
                             <div class="text-xs text-zinc-500 mb-1">From</div>
-                            <div class="text-lg font-bold text-emerald-400">€1,999</div>
+                            <div class="text-lg font-bold text-emerald-400">
+                                @if(isset($hero) && $hero)
+                                    €{{ number_format($hero->price, 2) }}
+                                @else
+                                    €1,999
+                                @endif
+                            </div>
                         </div>
                     </div>
 
@@ -89,8 +111,20 @@
                     @foreach($featured as $product)
                         <a href="{{ route('products.show', $product) }}"
                            class="block bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 hover:border-emerald-500 hover:shadow-[0_0_25px_rgba(16,185,129,0.35)] transition">
-                            <div class="h-32 bg-zinc-950 rounded-xl mb-3 flex items-center justify-center text-xs text-zinc-500 border border-zinc-800">
-                                {{ $product->image ?? 'Product preview' }}
+                            <div class="h-64 bg-zinc-950 rounded-xl mb-3 flex items-center justify-center text-xs text-zinc-500 border border-zinc-800 overflow-hidden">
+                                @php
+                                    $src = null;
+                                    if (!empty($product->image)) {
+                                        $src = \Illuminate\Support\Str::startsWith($product->image, ['http://','https://','/'])
+                                            ? $product->image
+                                            : \Illuminate\Support\Facades\Storage::url($product->image);
+                                    }
+                                @endphp
+                                @if($src)
+                                    <img src="{{ $src }}" alt="{{ $product->name }}" class="h-full w-full object-cover">
+                                @else
+                                    <span>Product preview</span>
+                                @endif
                             </div>
                             <h3 class="font-semibold mb-1 text-zinc-50 text-sm">
                                 {{ $product->name }}

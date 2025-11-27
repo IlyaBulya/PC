@@ -7,6 +7,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminHomeSettingsController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -53,6 +54,8 @@ Route::middleware(['auth', 'admin'])
     ->name('admin.')
     ->group(function () {
         Route::resource('products', AdminProductController::class)->except(['show']);
+        Route::get('home', [AdminHomeSettingsController::class, 'edit'])->name('home.edit');
+        Route::put('home', [AdminHomeSettingsController::class, 'update'])->name('home.update');
     });
 
 require __DIR__.'/auth.php';

@@ -6,7 +6,7 @@
             @foreach($products as $product)
                 <a href="{{ route('products.show', $product) }}"
                    class="block bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 hover:border-emerald-500 hover:shadow-[0_0_25px_rgba(16,185,129,0.35)] transition">
-                    <div class="h-40 bg-zinc-950 rounded-xl mb-3 flex items-center justify-center text-sm text-zinc-500 border border-zinc-800 overflow-hidden">
+                    <div class="h-64 bg-zinc-950 rounded-xl mb-3 flex items-center justify-center text-sm text-zinc-500 border border-zinc-800 overflow-hidden">
                         @php
                             $src = null;
                             if (!empty($product->image)) {
