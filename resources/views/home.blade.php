@@ -48,7 +48,7 @@
                 <div class="relative bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-3xl p-6 shadow-[0_0_40px_rgba(15,23,42,0.8)]">
                 @endif
                     <div class="text-xs uppercase tracking-[0.25em] text-zinc-500 mb-3">
-                        Featured build
+                        Best build
                     </div>
 
                     @php
@@ -109,7 +109,7 @@
         @if($featured->isNotEmpty())
             <section>
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-semibold">Featured builds</h2>
+                    <h2 class="text-xl font-semibold">Top products</h2>
                     <a href="{{ route('products.types') }}" class="text-xs text-emerald-400 hover:text-emerald-300">
                         View full catalog →
                     </a>
